@@ -1,0 +1,7 @@
+# Numbered entry points — run top to bottom (2026-08-24)
+
+LAST_FM_00_prepare_antileak_splits_and_pair_tables_20260824.py
+LAST_FM_01_materialize_A5_and_H3_statistical_features_20260824.py
+LAST_FM_02_train_true_final_joint_model_HGT_A5_H3_LEG_20260824.py
+LAST_FM_03_train_ablation_layers_sampled_val_NDCG_20260824.py
+LAST_FM_04_fullrank_validation_frozen_checkpoints_20260824.py

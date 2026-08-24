@@ -1,0 +1,25 @@
+{
+  "seed": 303,
+  "best_epoch": 43,
+  "stopping_epoch": 51,
+  "best_sampled_NDCG@20": 0.8735148457637651,
+  "final_sampled_NDCG@20": 0.8735148457637651,
+  "MRR": 0.9165830396361855,
+  "Recall@20": 0.9344266033198814,
+  "HitRate@20": 0.9962008375426327,
+  "lr_at_best": 0.0005,
+  "lr_at_stop": 0.000125,
+  "n_lr_reductions": 3,
+  "stop_reason": "EARLY_STOP",
+  "CONVERGENCE_WARNING": false,
+  "train_loss_at_best": 0.44697374293554626,
+  "convergence": "CONVERGED",
+  "seconds": 5488.404138088226,
+  "peak_mem": {
+    "allocated": 172538880,
+    "driver": 8527364096
+  },
+  "init_state_fingerprint": "1a284b15cab69d04",
+  "hgt_grad_scope": "ALL_TRAIN",
+  "from_scratch": true
+}

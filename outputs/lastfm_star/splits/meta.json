@@ -1,0 +1,11 @@
+{
+  "n_users": 23566,
+  "n_items": 48123,
+  "validation_ratio": 0.1,
+  "min_train_items": 5,
+  "seed": 2026,
+  "users_without_val_holdout": 366,
+  "n_train_interactions": 1111803,
+  "n_valid_interactions": 124102,
+  "n_test_interactions": 306914
+}

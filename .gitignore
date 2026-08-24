@@ -1,0 +1,92 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.mplconfig/
+.pytest_cache/
+*.egg-info/
+.ipynb_checkpoints/
+logs/
+
+# --- Do not redistribute raw KGAT dumps ---
+data/external/
+data/KGAT_LastFM/
+data/KGAT_AmazonBook/
+data/KGAT_Yelp2018/
+
+# --- KRAM: local materialization cache only (not in git) ---
+KRAM_FINAL_WORK/
+
+# --- Legacy configs / docs ---
+configs/config.yaml
+configs/contracts/
+configs/data_schema.yaml
+configs/lastfm_architecture_hcr_v1.yaml
+configs/lastfm_full_sota*.yaml
+configs/lastfm_lp_v1.yaml
+configs/lastfm_orthonormal_hcr_v2.yaml
+configs/lastfm_path_h2_v1.yaml
+
+# --- Scripts: only numbered entry + internal deps (see INTERNAL_LASTFM_SCRIPTS_20260824.txt) ---
+scripts/*
+!scripts/LAST_FM_*_20260824.py
+!scripts/_lastfm_pipeline_common_20260824.py
+!scripts/run_race_clean_3.py
+!scripts/run_final_hgt_capacity_convergence_race_v1.py
+!scripts/run_hgt_artist_edge_ablation_v1.py
+!scripts/hgt_aggregation_common.py
+!scripts/lastfm_hgt_a5_ranker_common.py
+!scripts/run_lastfm_true_final_joint_training_v1.py
+!scripts/run_lastfm_joint_hgt_a5_ranker_v1.py
+!scripts/run_lastfm_noleak_fullrank_validation_v1.py
+!scripts/run_lastfm_noleak_fullrank_fast_v1.py
+!scripts/run_a11_distributional_representation_series_v1.py
+!scripts/run_a11_functional_distribution_benchmark_v2.py
+!scripts/run_artist_a11_residual_branch_v1.py
+!scripts/PIPELINE_LAST_FM_20260824.txt
+!scripts/INTERNAL_LASTFM_SCRIPTS_20260824.txt
+!scripts/cleanup_legacy_local.sh
+
+# --- Old output trees ---
+outputs/lastfm/
+outputs/lastfm_full/
+outputs/lastfm_race_v1/
+outputs/lastfm_star/features/
+outputs/lastfm_star/stage_full/
+
+# --- Model weights and training caches ---
+LASTFM_TRUE_FINAL/**/*.pt
+LASTFM_TRUE_FINAL/**/*.pkl
+LASTFM_TRUE_FINAL/**/*.npz
+LASTFM_TRUE_FINAL/**/logs/
+LASTFM_TRUE_FINAL/**/*.log
+LASTFM_TRUE_FINAL/**/run/
+LASTFM_TRUE_FINAL/**/06_CHECKPOINTS/
+LASTFM_TRUE_FINAL/**/00_AUDIT/
+LASTFM_TRUE_FINAL/**/FROM_SCRATCH_AUDIT.json
+LASTFM_TRUE_FINAL/**/PROGRESS.txt
+LASTFM_TRUE_FINAL/**/train_meta.json
+LASTFM_TRUE_FINAL/RECOVERY.md
+LASTFM_TRUE_FINAL/THESIS_INSERT_DRAFT.md
+LASTFM_TRUE_FINAL/thesis/
+LASTFM_TRUE_FINAL/NOLEAK_FULLRANK_VALIDATION_V1_FAST/
+LASTFM_TRUE_FINAL/C1_REPRODUCTION_CONTROL/
+LASTFM_TRUE_FINAL/ABLATION_TRAIN_THEN_FULLRANK/
+
+# --- Legacy tests ---
+tests/test_native_measure_screen.py
+tests/test_h2_*.py
+tests/test_h3_*.py
+tests/test_orthonormal_hcr*.py
+
+# --- Misc ---
+notebooks/
+docker/
+external/
+*.pdf
+docs/kg_hcr.md
+docs/logic_task_a_card.md
+docs/protocol_*.md
+docs/task_a_logic.md
+docs/transferability.md
+docs/README.md

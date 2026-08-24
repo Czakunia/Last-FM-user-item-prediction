@@ -1,0 +1,69 @@
+{
+  "race_track": "RACE_CLEAN_3",
+  "protocol": "Last-FM* from IntentAwareRS (SIGIR 2025) --resolveDataLeakage yes",
+  "paper": "Shehzad, Ferrari Dacrema, Jannach \u2014 A Worrying Reproducibility Study of Intent-Aware Recommendation Models (SIGIR 2025) DOI:10.1145/3726302.3730307",
+  "source_repo": "https://github.com/Faisalse/IntentAwareRS",
+  "source_data": "external/IntentAwareRS/data/KGIN/lastFm",
+  "algorithm_ref": "topn_baselines_neurals/Data_manager/lastFM_AmazonBook_AliBabaFashion_KGIN.py + KGIN data_loader.read_cf_avoid_dataLeakage",
+  "PYTHONHASHSEED": "0",
+  "note_on_split": "For leaking users only: union(train,test), drop users with |union|<2, then last 20% of list(set) \u2192 test (exact IntentAwareRS code). Non-leaking users keep original train/test.",
+  "do_not_create_own_split": true,
+  "source_fingerprints": {
+    "train.txt": {
+      "ours": "b3584137980a372a",
+      "intentAwareRS": "b3584137980a372a",
+      "identical": true
+    },
+    "test.txt": {
+      "ours": "bb79750f3a034e5c",
+      "intentAwareRS": "bb79750f3a034e5c",
+      "identical": true
+    },
+    "kg_final.txt": {
+      "ours": "8e3c22a89543f882",
+      "intentAwareRS": "8e3c22a89543f882",
+      "identical": true
+    }
+  },
+  "stats_leaking_source": {
+    "name": "IntentAwareRS/KGIN/lastFm",
+    "n_users": 23566,
+    "n_items": 48123,
+    "n_train_interactions": 1289003,
+    "n_test_interactions": 423635,
+    "users_in_both_splits": 23566,
+    "users_train_only": 0,
+    "users_test_only": 0,
+    "leak_users": 17290,
+    "leak_pair_count": 169782,
+    "max_user_id": 23565,
+    "max_item_id": 48122
+  },
+  "stats_lastfm_star": {
+    "name": "Last-FM*",
+    "n_users": 23529,
+    "n_items": 48122,
+    "n_train_interactions": 1235905,
+    "n_test_interactions": 306914,
+    "users_in_both_splits": 23529,
+    "users_train_only": 0,
+    "users_test_only": 0,
+    "leak_users": 0,
+    "leak_pair_count": 0,
+    "max_user_id": 23565,
+    "max_item_id": 48122
+  },
+  "leak_users_paper": 17290,
+  "leak_users_observed": 17290,
+  "removed_users_union_lt2": 37,
+  "re_split_users": 17290,
+  "unchanged_users": 6276,
+  "paper_baseline_RP3beta_LastFM_star": {
+    "Recall@20": 0.253,
+    "NDCG@20": 0.233
+  },
+  "paper_baseline_RP3beta_LastFM_leaking": {
+    "Recall@20": 0.189,
+    "NDCG@20": 0.187
+  }
+}

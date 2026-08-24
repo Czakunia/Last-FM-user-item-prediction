@@ -1,0 +1,26 @@
+{
+  "seed": 303,
+  "architecture_name": "HGT_64D_2L_2H+PAIR256+GRAPH_DOT1+A5+H3_NO_LEG",
+  "best_epoch": 39,
+  "stopping_epoch": 47,
+  "best_sampled_NDCG@20": 0.8730070699329477,
+  "final_sampled_NDCG@20": 0.8730070699329477,
+  "MRR": 0.9156230564385783,
+  "Recall@20": 0.9343358044335898,
+  "HitRate@20": 0.9962871821439364,
+  "lr_at_best": 0.001,
+  "stop_reason": "EARLY_STOP",
+  "CONVERGENCE_WARNING": false,
+  "convergence": "CONVERGED",
+  "seconds": 4446.290167093277,
+  "peak_mem": {
+    "allocated": 125001984,
+    "driver": 7461765120
+  },
+  "init_state_fingerprint": "941bfa35be6942c1",
+  "hgt_grad_scope": "ALL_TRAIN",
+  "use_H3": true,
+  "use_LEG": false,
+  "use_A5": true,
+  "layer": "h3"
+}

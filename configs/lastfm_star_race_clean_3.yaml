@@ -1,0 +1,30 @@
+protocol: RACE_CLEAN_3
+extends: configs/lastfm_full_sota_v1.yaml
+
+# RACE CLEAN 3 — Last-FM* (IntentAwareRS, no train∩test leakage)
+# Official test preserved from Last-FM*. Val carved from *train* only (seed 2026).
+# Does NOT touch outputs/lastfm_full or KRAM_FINAL_WORK/CLEAN_V2 / measure_race.
+
+experiment:
+  track: RACE_CLEAN_3
+  note: >
+    Last-FM* from IntentAwareRS --resolveDataLeakage yes.
+    CLEAN formulas (true A Jaccard/Cosine, HCR 3-D, self-exclusion, 265-D MLP).
+    Compare later to leaking V1/CLEAN_V2 setup honestly.
+
+data:
+  source: LastFM_star_IntentAwareRS
+  path: data/LastFM_star_IntentAwareRS
+  original_test_preserved: true
+  max_users: null
+
+paths:
+  outputs_root: outputs/lastfm_star
+  audit: outputs/lastfm_star/audit
+  manifest: outputs/lastfm_star/manifest_race_clean_3.json
+  splits: outputs/lastfm_star/splits
+  features: outputs/lastfm_star/features
+  stage_full: outputs/lastfm_star/stage_full
+  hcr_h2_cache: outputs/lastfm_star/features/stage_h/H2_a11_energy
+  hcr_a11_cache: outputs/lastfm_star/features/stage_h/H1_a11
+  hcr_legacy_cache: outputs/lastfm_star/features/stage_h/H0_legacy_scalar

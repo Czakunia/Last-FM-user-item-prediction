@@ -1,0 +1,89 @@
+{
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "rows": [
+    {
+      "seed": 101,
+      "architecture_name": "HGT_64D_2L_2H+PAIR256+GRAPH_DOT1+A5_NO_H3_NO_LEG",
+      "best_epoch": 54,
+      "stopping_epoch": 62,
+      "best_sampled_NDCG@20": 0.7910674350272833,
+      "final_sampled_NDCG@20": 0.7910674350272833,
+      "MRR": 0.8425248466571443,
+      "Recall@20": 0.9039045062973311,
+      "HitRate@20": 0.9960281483400251,
+      "lr_at_best": 0.001,
+      "stop_reason": "EARLY_STOP",
+      "CONVERGENCE_WARNING": false,
+      "convergence": "CONVERGED",
+      "seconds": 21708.557849884033,
+      "peak_mem": {
+        "allocated": 124988672,
+        "driver": 7461765120
+      },
+      "init_state_fingerprint": "23fb7212eba0d396",
+      "hgt_grad_scope": "ALL_TRAIN",
+      "use_H3": false,
+      "use_LEG": false,
+      "use_A5": true,
+      "layer": "a5"
+    },
+    {
+      "seed": 202,
+      "architecture_name": "HGT_64D_2L_2H+PAIR256+GRAPH_DOT1+A5_NO_H3_NO_LEG",
+      "best_epoch": 70,
+      "stopping_epoch": 78,
+      "best_sampled_NDCG@20": 0.7905600206053377,
+      "final_sampled_NDCG@20": 0.7905600206053377,
+      "MRR": 0.8405025555890476,
+      "Recall@20": 0.903709545669784,
+      "HitRate@20": 0.9961576652419808,
+      "lr_at_best": 0.00025,
+      "stop_reason": "EARLY_STOP",
+      "CONVERGENCE_WARNING": false,
+      "convergence": "CONVERGED",
+      "seconds": 10865.817327022552,
+      "peak_mem": {
+        "allocated": 124988672,
+        "driver": 8535506944
+      },
+      "init_state_fingerprint": "a1d97d2fa7bcac92",
+      "hgt_grad_scope": "ALL_TRAIN",
+      "use_H3": false,
+      "use_LEG": false,
+      "use_A5": true,
+      "layer": "a5"
+    },
+    {
+      "seed": 303,
+      "architecture_name": "HGT_64D_2L_2H+PAIR256+GRAPH_DOT1+A5_NO_H3_NO_LEG",
+      "best_epoch": 67,
+      "stopping_epoch": 75,
+      "best_sampled_NDCG@20": 0.7907677069774596,
+      "final_sampled_NDCG@20": 0.7906807224001411,
+      "MRR": 0.8413694000040524,
+      "Recall@20": 0.9038721270718422,
+      "HitRate@20": 0.9960713206406769,
+      "lr_at_best": 0.00025,
+      "stop_reason": "EARLY_STOP",
+      "CONVERGENCE_WARNING": false,
+      "convergence": "CONVERGED",
+      "seconds": 7484.194009780884,
+      "peak_mem": {
+        "allocated": 124988672,
+        "driver": 8858468352
+      },
+      "init_state_fingerprint": "47a90526470aa745",
+      "hgt_grad_scope": "ALL_TRAIN",
+      "use_H3": false,
+      "use_LEG": false,
+      "use_A5": true,
+      "layer": "a5"
+    }
+  ],
+  "timestamp": "2026-08-21T07:02:54Z",
+  "arch": "HGT_64D_2L_2H+PAIR256+GRAPH_DOT1+A5_NO_H3_NO_LEG"
+}

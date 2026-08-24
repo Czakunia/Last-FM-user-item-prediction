@@ -1,0 +1,2 @@
+total_valid_txt_users,users_with_ge1_val_positive,users_evaluated,users_skipped_zero_positives,users_skipped_other,skip_reason_zero_positives
+23529,23163,23163,366,0,empty valid.txt item list

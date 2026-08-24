@@ -1,0 +1,2 @@
+catalog_size,candidate_universe_hash,n_users_graph,n_eval_users,mean_candidates,median_candidates,min_candidates,max_candidates,mean_val_positives,median_val_positives,max_val_positives,users_with_lt_K_candidates
+48123,315fd2f124edfe20b8e8241f5dfbd162d3b0890c27389ba2cc9ccee51b44de12,23566,23163,48075.04830980443,48098.0,46355,48119,5.35776885550231,3.0,196,0
