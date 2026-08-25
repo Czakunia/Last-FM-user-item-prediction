@@ -1,0 +1,47 @@
+[
+  {
+    "model": "TRUE_FINAL_REFIT",
+    "seed": 101,
+    "epoch_count": 36,
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/models/TRUE_FINAL_REFIT_SEED101/model.pt",
+    "sha256": "bf36fb1014740b6f026d1a6679a37e6270fec52a2fecaae2edbb8c6e1b9e1cc8",
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T09:25:38Z",
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "hyperparameters": {
+      "lr0": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 4096
+    }
+  },
+  {
+    "model": "TRUE_FINAL_REFIT",
+    "seed": 202,
+    "epoch_count": 34,
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/models/TRUE_FINAL_REFIT_SEED202/model.pt",
+    "sha256": "a682c0447e276220e8c17feefab2a14ee260fa4ae94b53d83cb121355089b63b",
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T10:07:44Z",
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "hyperparameters": {
+      "lr0": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 4096
+    }
+  },
+  {
+    "model": "TRUE_FINAL_REFIT",
+    "seed": 303,
+    "epoch_count": 43,
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/models/TRUE_FINAL_REFIT_SEED303/model.pt",
+    "sha256": "8728a474881e753fd41641b119ef96656d838c8e440720b9caed8429393df8d4",
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T11:24:44Z",
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "hyperparameters": {
+      "lr0": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 4096
+    }
+  }
+]

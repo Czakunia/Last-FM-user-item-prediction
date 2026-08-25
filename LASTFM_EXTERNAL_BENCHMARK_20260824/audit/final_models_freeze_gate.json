@@ -1,0 +1,167 @@
+{
+  "timestamp": "2026-08-24T11:26:00Z",
+  "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+  "intentawarers_commit": "63ece4444659b9505c36058be219c2db951ea087",
+  "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+  "test_hash": "05189cddff68db850c79df3b318868e3aed22c6ef66896bef439a73c953f1cd9",
+  "checks": {
+    "required_baselines_fitted": true,
+    "true_final_refit_seeds": true,
+    "artifact_hashes_present": true,
+    "training_hash_consistent": true,
+    "split_overlap_zero": true,
+    "features_materialized_on_train_external": true,
+    "sealed_test_not_scored": true,
+    "evaluator_reproduction": true,
+    "ease_r_status": "NOT_INCLUDED",
+    "userknn_status": "INCLUDED"
+  },
+  "FINAL_MODELS_FROZEN": "YES",
+  "READY_TO_UNSEAL": "YES",
+  "sealed_test_accessed": false,
+  "baselines": [
+    {
+      "model": "TopPop",
+      "hyperparameters": {},
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T08:09:31Z",
+      "fit_seconds": 0.044608116149902344,
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "external_commit": "local",
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/TopPop/TopPop.zip",
+      "artifact_sha256": "61c1fcf479932e23800000eba6d264cd8e7165e0cf6f8f968e291c13b24a90a1"
+    },
+    {
+      "model": "ItemKNN",
+      "hyperparameters": {
+        "topK": 144,
+        "similarity": "cosine",
+        "shrink": 1000,
+        "normalize": true
+      },
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T08:10:55Z",
+      "fit_seconds": 84.40225791931152,
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/ItemKNN/ItemKNN.zip",
+      "artifact_sha256": "bbab48975962c216b56b3e58674a305efc5c809e032f99c04eb89ac7b6ee5bac"
+    },
+    {
+      "model": "P3alpha",
+      "hyperparameters": {
+        "topK": 496,
+        "alpha": 0.7681732734954694,
+        "normalize_similarity": false,
+        "implicit": false,
+        "min_rating": 0
+      },
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T08:11:51Z",
+      "fit_seconds": 55.344290018081665,
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/P3alpha/P3alpha.zip",
+      "artifact_sha256": "7764f58a44a87c67432ecc00a85cc5f6f37a8a398224b84fd4e19bb8c40d5a6e"
+    },
+    {
+      "model": "RP3beta",
+      "hyperparameters": {
+        "topK": 350,
+        "alpha": 0.7681732734954694,
+        "beta": 0.4181395996963926,
+        "normalize_similarity": true,
+        "implicit": false,
+        "min_rating": 0
+      },
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T08:12:36Z",
+      "fit_seconds": 45.695263147354126,
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/RP3beta/RP3beta.zip",
+      "artifact_sha256": "e866b0bdc14c11fa1ecf601cb516e2740ed06399a6b95d39e3e92487875bcb5c"
+    },
+    {
+      "model": "UserKNN",
+      "hyperparameters": {
+        "topK": 144,
+        "similarity": "cosine",
+        "shrink": 1000,
+        "normalize": true
+      },
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T08:13:18Z",
+      "fit_seconds": 42.14240002632141,
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/UserKNN/UserKNN.zip",
+      "artifact_sha256": "47080add9711df0d59bb2eb547e30a333f1c9f8d33ca460ef4dec0bf56bb832c"
+    }
+  ],
+  "true_final_refit": [
+    {
+      "model": "TRUE_FINAL_REFIT",
+      "seed": 101,
+      "epoch_count": 36,
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/models/TRUE_FINAL_REFIT_SEED101/model.pt",
+      "sha256": "bf36fb1014740b6f026d1a6679a37e6270fec52a2fecaae2edbb8c6e1b9e1cc8",
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T09:25:38Z",
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "hyperparameters": {
+        "lr0": 0.001,
+        "weight_decay": 0.0001,
+        "batch_size": 4096
+      }
+    },
+    {
+      "model": "TRUE_FINAL_REFIT",
+      "seed": 202,
+      "epoch_count": 34,
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/models/TRUE_FINAL_REFIT_SEED202/model.pt",
+      "sha256": "a682c0447e276220e8c17feefab2a14ee260fa4ae94b53d83cb121355089b63b",
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T10:07:44Z",
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "hyperparameters": {
+        "lr0": 0.001,
+        "weight_decay": 0.0001,
+        "batch_size": 4096
+      }
+    },
+    {
+      "model": "TRUE_FINAL_REFIT",
+      "seed": 303,
+      "epoch_count": 43,
+      "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/models/TRUE_FINAL_REFIT_SEED303/model.pt",
+      "sha256": "8728a474881e753fd41641b119ef96656d838c8e440720b9caed8429393df8d4",
+      "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+      "timestamp": "2026-08-24T11:24:44Z",
+      "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+      "hyperparameters": {
+        "lr0": 0.001,
+        "weight_decay": 0.0001,
+        "batch_size": 4096
+      }
+    }
+  ],
+  "upstream_evaluator": {
+    "UPSTREAM_EVALUATOR_CLASS": "EvaluatorHoldout",
+    "UPSTREAM_EVALUATOR_FILE": "external_repos/IntentAwareRS/topn_baselines_neurals/Evaluation/Evaluator.py",
+    "UPSTREAM_CUTOFFS": [
+      1,
+      5,
+      10,
+      20,
+      40,
+      50,
+      100
+    ],
+    "UPSTREAM_TRAIN_MASKING": "exclude_seen=True passed to recommender.recommend/remove_seen_flag",
+    "UPSTREAM_USER_FILTERING": "min_ratings_per_user=1; users with no test items skipped by Evaluator base class",
+    "UPSTREAM_NDCG_IMPLEMENTATION": "external_repos/IntentAwareRS/topn_baselines_neurals/Evaluation/metrics.py::ndcg",
+    "UPSTREAM_RECALL_IMPLEMENTATION": "external_repos/IntentAwareRS/topn_baselines_neurals/Evaluation/metrics.py::recall",
+    "reproduction": "PASS"
+  }
+}

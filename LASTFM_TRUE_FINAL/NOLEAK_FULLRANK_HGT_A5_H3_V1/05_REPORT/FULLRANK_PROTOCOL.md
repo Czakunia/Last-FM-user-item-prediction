@@ -4,7 +4,7 @@ Generated 2026-08-23T11:17:10Z.
 
 ## Dataset
 Corrected **Last-FM\*** (IntentAwareRS `--resolveDataLeakage yes`).  
-Config: `configs/lastfm_star_race_clean_3.yaml`.  
+Config: `configs/lastfm_star_proxy_20260824.yaml`.  
 TEST is read **only** for pair-overlap audit. TEST is **not scored**.
 
 ## Frozen model

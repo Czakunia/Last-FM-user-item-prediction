@@ -29,6 +29,12 @@ import torch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from scripts._lastfm_paths_20260824 import (  # noqa: E402
+    PROTOCOL_CONFIG,
+    leg_k2_dir,
+    materialized_root,
+)
+
 from scripts.hgt_aggregation_common import empty_cache  # noqa: E402
 from scripts.run_final_hgt_capacity_convergence_race_v1 import (  # noqa: E402
     build_race_model,
@@ -62,11 +68,11 @@ from src.lastfm_lp.pipeline.features_hcr_v2 import ensure_cross_fit  # noqa: E40
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-CFG = ROOT / "configs" / "lastfm_star_race_clean_3.yaml"
+CFG = PROTOCOL_CONFIG
 DATA = ROOT / "data" / "LastFM_star_IntentAwareRS"
 SPLITS = ROOT / "outputs" / "lastfm_star" / "splits"
-RACE = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
-V2 = RACE / "A11_FUNCTIONAL_DISTRIBUTION_BENCHMARK_V2"
+RACE = materialized_root()
+V2 = leg_k2_dir(RACE)  # publication: .../leg_k2 (legacy V2/nxt compat inside helper)
 B0_H = RACE / "race" / "a11_top25" / "features"
 TRAIN_OUT = Path(
     os.environ.get(
@@ -258,7 +264,7 @@ def data_audit() -> dict[str, Any]:
         "kg": sha256_file(DATA / "kg_final.txt"),
         "H3_train": sha256_file(B0_H / "X_train.npy"),
         "H3_val": sha256_file(B0_H / "X_val.npy"),
-        "LEG_K2_scaler": sha256_file(V2 / "representations" / "LEG_K2_scaler.pkl"),
+        "LEG_K2_scaler": sha256_file(V2 / "LEG_K2_scaler.pkl"),
         "A5_train": sha256_file(shared_A_dir() / "X_train.npy"),
     }
     train_fp = json.loads((TRAIN_OUT / "00_AUDIT" / "DATA_FINGERPRINTS.json").read_text())
@@ -482,7 +488,7 @@ def score_user_catalog_legacy_torch_full(
 def check_l2_vs_pair_table(bundle, cf, l2_scaler, n_check: int = 64) -> dict[str, Any]:
     """Full-rank L2 formula must match V2 scaled LEG_K2 on held-out val pairs."""
     va = bundle["val_pairs"]
-    raw_va = np.load(V2 / "representations" / "LEG_K2_val.npy").astype(np.float32)
+    raw_va = np.load(V2 / "LEG_K2_val.npy").astype(np.float32)
     if raw_va.ndim == 1:
         raw_va = raw_va[:, None]
     mt = bundle["model_train"]
@@ -509,7 +515,7 @@ Generated {utc_now()}.
 
 ## Dataset
 Corrected **Last-FM\\*** (IntentAwareRS `--resolveDataLeakage yes`).  
-Config: `configs/lastfm_star_race_clean_3.yaml`.  
+Config: `configs/lastfm_star_proxy_20260824.yaml`.  
 TEST is read **only** for pair-overlap audit. TEST is **not scored**.
 
 ## Frozen model
@@ -707,7 +713,7 @@ def main() -> None:
             l2_check = {"SKIPPED": True, "reason": "NO_LEG HGT+A5+H3 ranker has zero LEG"}
             write_json(d["audit"] / "LEG_K2_PAIR_MATCH.json", l2_check)
         else:
-            with (V2 / "representations" / "LEG_K2_scaler.pkl").open("rb") as f:
+            with (V2 / "LEG_K2_scaler.pkl").open("rb") as f:
                 l2_scaler = pickle.load(f)
             l2_check = check_l2_vs_pair_table(bundle, cf, l2_scaler)
             write_json(d["audit"] / "LEG_K2_PAIR_MATCH.json", l2_check)

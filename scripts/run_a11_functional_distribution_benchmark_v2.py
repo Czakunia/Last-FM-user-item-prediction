@@ -33,6 +33,12 @@ from torch import Tensor, nn
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from scripts._lastfm_paths_20260824 import (  # noqa: E402
+    PROTOCOL_CONFIG,
+    leg_k2_dir,
+    materialized_root,
+)
+
 from scripts.hgt_aggregation_common import empty_cache  # noqa: E402
 from scripts.run_a11_distributional_representation_series_v1 import (  # noqa: E402
     ResMLP,
@@ -64,8 +70,8 @@ from src.lastfm_lp.config import load_protocol_config  # noqa: E402
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-CFG = ROOT / "configs" / "lastfm_star_race_clean_3.yaml"
-RACE = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
+CFG = PROTOCOL_CONFIG
+RACE = materialized_root()
 V1 = RACE / "A11_DISTRIBUTIONAL_REPRESENTATION_SERIES_V1"
 B0_H = RACE / "race" / "a11_top25" / "features"
 OUT = RACE / "A11_FUNCTIONAL_DISTRIBUTION_BENCHMARK_V2"

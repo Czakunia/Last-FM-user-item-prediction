@@ -1,0 +1,27 @@
+{
+  "UPSTREAM_EVALUATOR_CLASS": "EvaluatorHoldout",
+  "UPSTREAM_EVALUATOR_FILE": "external_repos/IntentAwareRS/topn_baselines_neurals/Evaluation/Evaluator.py",
+  "UPSTREAM_CUTOFFS": [
+    1,
+    5,
+    10,
+    20,
+    40,
+    50,
+    100
+  ],
+  "UPSTREAM_TRAIN_MASKING": "exclude_seen=True passed to recommender.recommend/remove_seen_flag",
+  "UPSTREAM_USER_FILTERING": "min_ratings_per_user=1; users with no test items skipped by Evaluator base class",
+  "UPSTREAM_NDCG_IMPLEMENTATION": "external_repos/IntentAwareRS/topn_baselines_neurals/Evaluation/metrics.py::ndcg",
+  "UPSTREAM_RECALL_IMPLEMENTATION": "external_repos/IntentAwareRS/topn_baselines_neurals/Evaluation/metrics.py::recall",
+  "method": "EvaluatorHoldout vs metrics.ndcg/recall on identical ranked lists",
+  "holdout_ndcg20": 1.0,
+  "manual_ndcg20": 1.0,
+  "holdout_recall20": 1.0,
+  "manual_recall20": 1.0,
+  "abs_diff_ndcg20": 0.0,
+  "abs_diff_recall20": 0.0,
+  "SHEHZAD_EVALUATOR_REPRODUCTION": "PASS",
+  "timestamp": "2026-08-24T11:26:00Z",
+  "sealed_test_accessed": false
+}

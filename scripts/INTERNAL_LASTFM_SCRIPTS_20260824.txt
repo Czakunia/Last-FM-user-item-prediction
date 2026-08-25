@@ -1,15 +1,25 @@
 # Internal implementation — called by LAST_FM_* entry scripts (2026-08-24)
 
+# Paths / config
+_lastfm_paths_20260824.py
 _lastfm_pipeline_common_20260824.py
+
+# Materialize A5/H3
 run_race_clean_3.py
+run_publication_our_hgt_fullrank.py
+
+# Model builders / helpers imported by train + fullrank
 run_final_hgt_capacity_convergence_race_v1.py
 run_hgt_artist_edge_ablation_v1.py
 hgt_aggregation_common.py
+run_hgt_node_semantic_role_features_v1.py
 lastfm_hgt_a5_ranker_common.py
-run_lastfm_true_final_joint_training_v1.py
-run_lastfm_joint_hgt_a5_ranker_v1.py
-run_lastfm_noleak_fullrank_validation_v1.py
-run_lastfm_noleak_fullrank_fast_v1.py
 run_a11_distributional_representation_series_v1.py
 run_a11_functional_distribution_benchmark_v2.py
 run_artist_a11_residual_branch_v1.py
+run_lastfm_final_clean_training_v1.py
+
+# Train + evaluate (subprocess targets of LAST_FM_02–04)
+run_lastfm_true_final_joint_training_v1.py
+run_lastfm_joint_hgt_a5_ranker_v1.py
+run_lastfm_noleak_fullrank_validation_v1.py

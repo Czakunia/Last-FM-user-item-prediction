@@ -44,6 +44,12 @@ from torch import nn
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from scripts._lastfm_paths_20260824 import (  # noqa: E402
+    PROTOCOL_CONFIG,
+    leg_k2_dir,
+    materialized_root,
+)
+
 from scripts.hgt_aggregation_common import empty_cache  # noqa: E402
 from scripts.run_a11_distributional_representation_series_v1 import (  # noqa: E402
     cell_from_scores,
@@ -84,9 +90,9 @@ from src.lastfm_lp.data.build_ckg_graph import (  # noqa: E402
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-CFG = ROOT / "configs" / "lastfm_star_race_clean_3.yaml"
-RACE = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
-V2 = RACE / "A11_FUNCTIONAL_DISTRIBUTION_BENCHMARK_V2"
+CFG = PROTOCOL_CONFIG
+RACE = materialized_root()
+V2 = leg_k2_dir(RACE)  # publication: .../leg_k2 (legacy V2/nxt compat inside helper)
 B0_H = RACE / "race" / "a11_top25" / "features"
 C1_OUT = ROOT / "LASTFM_TRUE_FINAL" / "C1_REPRODUCTION_CONTROL"
 OUT = Path(
@@ -1200,8 +1206,8 @@ training:
     write_json(d["audit"] / "HOST.json", host)
     write_dropout_note(d["audit"])
 
-    p_tr = V2 / "nxt" / "LEG_K2_train.npy"
-    p_va = V2 / "nxt" / "LEG_K2_val.npy"
+    p_tr = V2 / "LEG_K2_train.npy"
+    p_va = V2 / "LEG_K2_val.npy"
     if not p_tr.exists() or not p_va.exists():
         abort("missing V2 LEG_K2 representations")
     r_tr = np.load(p_tr).astype(np.float32)

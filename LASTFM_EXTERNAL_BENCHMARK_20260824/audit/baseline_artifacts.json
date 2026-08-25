@@ -1,0 +1,80 @@
+[
+  {
+    "model": "TopPop",
+    "hyperparameters": {},
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T08:09:31Z",
+    "fit_seconds": 0.044608116149902344,
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "external_commit": "local",
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/TopPop/TopPop.zip",
+    "artifact_sha256": "61c1fcf479932e23800000eba6d264cd8e7165e0cf6f8f968e291c13b24a90a1"
+  },
+  {
+    "model": "ItemKNN",
+    "hyperparameters": {
+      "topK": 144,
+      "similarity": "cosine",
+      "shrink": 1000,
+      "normalize": true
+    },
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T08:10:55Z",
+    "fit_seconds": 84.40225791931152,
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/ItemKNN/ItemKNN.zip",
+    "artifact_sha256": "bbab48975962c216b56b3e58674a305efc5c809e032f99c04eb89ac7b6ee5bac"
+  },
+  {
+    "model": "P3alpha",
+    "hyperparameters": {
+      "topK": 496,
+      "alpha": 0.7681732734954694,
+      "normalize_similarity": false,
+      "implicit": false,
+      "min_rating": 0
+    },
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T08:11:51Z",
+    "fit_seconds": 55.344290018081665,
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/P3alpha/P3alpha.zip",
+    "artifact_sha256": "7764f58a44a87c67432ecc00a85cc5f6f37a8a398224b84fd4e19bb8c40d5a6e"
+  },
+  {
+    "model": "RP3beta",
+    "hyperparameters": {
+      "topK": 350,
+      "alpha": 0.7681732734954694,
+      "beta": 0.4181395996963926,
+      "normalize_similarity": true,
+      "implicit": false,
+      "min_rating": 0
+    },
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T08:12:36Z",
+    "fit_seconds": 45.695263147354126,
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/RP3beta/RP3beta.zip",
+    "artifact_sha256": "e866b0bdc14c11fa1ecf601cb516e2740ed06399a6b95d39e3e92487875bcb5c"
+  },
+  {
+    "model": "UserKNN",
+    "hyperparameters": {
+      "topK": 144,
+      "similarity": "cosine",
+      "shrink": 1000,
+      "normalize": true
+    },
+    "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+    "timestamp": "2026-08-24T08:13:18Z",
+    "fit_seconds": 42.14240002632141,
+    "git_commit": "df96f695b3cbaadaec23253c486b483bf7c83861",
+    "external_commit": "63ece4444659b9505c36058be219c2db951ea087",
+    "artifact_path": "LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/UserKNN/UserKNN.zip",
+    "artifact_sha256": "47080add9711df0d59bb2eb547e30a333f1c9f8d33ca460ef4dec0bf56bb832c"
+  }
+]

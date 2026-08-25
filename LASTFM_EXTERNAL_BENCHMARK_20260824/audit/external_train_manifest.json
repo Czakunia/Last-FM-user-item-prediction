@@ -1,0 +1,41 @@
+{
+  "generated": "2026-08-24T08:06:12Z",
+  "training_hash": "ed398530a92126c261b8312e6183ab204316ae0b9754f10bef4df57a6c55f779",
+  "test_hash": "05189cddff68db850c79df3b318868e3aed22c6ef66896bef439a73c953f1cd9",
+  "counts": {
+    "model_train": {
+      "users": 23529,
+      "items": 47914,
+      "interactions": 1111803
+    },
+    "validation": {
+      "users": 23529,
+      "items": 35154,
+      "interactions": 124102
+    },
+    "upstream_corrected_train": {
+      "users": 23529,
+      "items": 47973,
+      "interactions": 1235905
+    },
+    "sealed_test": {
+      "users": 23529,
+      "items": 38478,
+      "interactions": 306914
+    }
+  },
+  "checks": {
+    "upstream_train_equals_model_train_plus_validation": true,
+    "upstream_test_equals_sealed_test": true,
+    "model_train_cap_validation": 0,
+    "model_train_cap_test": 0,
+    "validation_cap_test": 0
+  },
+  "source_data_path": "/Users/martajasiewicz/Desktop/KGAT_KnowledgeGraphs/data/LastFM_star_IntentAwareRS",
+  "intentawarers_commit": "63ece4444659b9505c36058be219c2db951ea087",
+  "upstream_train_sha256": "40f506fc4655605ab71def3fc7aa0c7c3538080175fd1996cd4117c46a455f2a",
+  "upstream_test_sha256": "f684145429010deba000da57b4c6192d3787382d64ee5bdf5c7554e64d8bc03f",
+  "dev_model_train_sha256": "479d40d9e81cb18f6e47b4f2934b4832ac66764665d482c1e76baa8275917278",
+  "dev_valid_sha256": "4178acf9108ce0be0f12501ae0bce6f857bf0901c28ce0111a18095c0a02d77f",
+  "dev_test_sha256": "f684145429010deba000da57b4c6192d3787382d64ee5bdf5c7554e64d8bc03f"
+}

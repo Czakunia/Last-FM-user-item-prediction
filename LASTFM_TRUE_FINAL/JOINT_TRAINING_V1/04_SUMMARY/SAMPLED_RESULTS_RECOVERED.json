@@ -1,0 +1,13 @@
+{
+  "run_id": "LASTFM_TRUE_FINAL_JOINT_TRAINING_V1",
+  "recovered": true,
+  "checkpoints_on_disk": false,
+  "TRUE_FINAL_MEAN_SAMPLED_NDCG20": 0.873315,
+  "TRUE_FINAL_STD_SAMPLED_NDCG20": 0.000133,
+  "results": [
+    {"seed": 101, "best_epoch": 36, "stopping_epoch": 44, "best_sampled_NDCG@20": 0.873224, "init_state_fingerprint": "295bf93943932690"},
+    {"seed": 202, "best_epoch": 34, "stopping_epoch": 42, "best_sampled_NDCG@20": 0.873253, "init_state_fingerprint": "a6dd5fd4d6800bb7"},
+    {"seed": 303, "best_epoch": 41, "stopping_epoch": 49, "best_sampled_NDCG@20": 0.873468, "init_state_fingerprint": "1a284b15cab69d04"}
+  ],
+  "note": "Weights were deleted with GraphNeuralNetwork_Thesis/outputs. Numbers recovered from the completed training report."
+}

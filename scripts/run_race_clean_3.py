@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""RACE CLEAN 3 — Last-FM* + CLEAN formulas: true Tabular A + 3-D A11 pool + 265-D MLP.
+"""RACE CLEAN 3 helpers — materialize A5/H3 for the frozen Last-FM* proxy.
 
-Outputs under KRAM_FINAL_WORK/RACE_CLEAN_3/ — does NOT touch V1 measure_race / CLEAN_V2 / outputs/lastfm_full.
+Publication feature root: outputs/lastfm_star/materialized/ (see _lastfm_paths_20260824).
 """
 
 from __future__ import annotations
@@ -58,7 +58,9 @@ from src.lastfm_lp.pipeline.features_hcr_v2 import ensure_cross_fit  # noqa: E40
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-OUT = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
+from scripts._lastfm_paths_20260824 import PROTOCOL_CONFIG, materialized_root  # noqa: E402
+
+OUT = materialized_root()
 SPLITS = ROOT / "outputs" / "lastfm_star" / "splits"
 SEEDS = (101, 202, 303)
 N_ITEMS = 48123
@@ -764,6 +766,7 @@ def main() -> None:
         choices=[
             "materialize-A",
             "materialize-H",
+            "materialize-all",
             "train",
             "eval",
             "eval-test",
@@ -780,7 +783,7 @@ def main() -> None:
     policies = [p.strip() for p in args.policies.split(",") if p.strip()]
     seeds = [int(s.strip()) for s in args.seeds.split(",") if s.strip()]
 
-    cfg = load_protocol_config(str(ROOT / "configs/lastfm_star_race_clean_3.yaml"))
+    cfg = load_protocol_config(str(PROTOCOL_CONFIG))
     bundle = load_prepared(cfg, verify=False)
     bundle["cfg"] = cfg
 
@@ -790,6 +793,13 @@ def main() -> None:
     if args.cmd == "materialize-H":
         for p in policies:
             materialize_H(bundle, p)  # type: ignore[arg-type]
+        return
+    if args.cmd == "materialize-all":
+        # Publication step 01: A5 + H3 (a11 Top25). LEG_K2 is separate (see docs).
+        materialize_A_true(bundle)
+        for p in policies:
+            materialize_H(bundle, p)  # type: ignore[arg-type]
+        print(f"[race_clean_3] materialize-all OK → {OUT}", flush=True)
         return
     if args.cmd == "train":
         materialize_A_true(bundle)

@@ -1,0 +1,85 @@
+# Resolved FINAL CLEAN training config (YAML-compatible JSON dump)
+{
+  "source_race": "FINAL_HGT_CAPACITY_CONVERGENCE_RACE_V1",
+  "source_config_json": "/Users/martajasiewicz/Desktop/KGAT_KnowledgeGraphs/KRAM_FINAL_WORK/RACE_CLEAN_3/FINAL_HGT_CAPACITY_CONVERGENCE_RACE_V1/00_AUDIT/CURRENT_HGT_TRAINING_CONFIG.json",
+  "source_convergence_csv": "/Users/martajasiewicz/Desktop/KGAT_KnowledgeGraphs/KRAM_FINAL_WORK/RACE_CLEAN_3/FINAL_HGT_CAPACITY_CONVERGENCE_RACE_V1/01_CONVERGENCE/CONVERGENCE_RESULTS_BY_SEED.csv",
+  "architecture": {
+    "hgt_hidden": 64,
+    "hgt_layers": 2,
+    "hgt_heads": 2,
+    "hgt_dropout": 0.1,
+    "pair_context_dim": 256,
+    "graph_dot_dim": 1,
+    "A5_dim": 5,
+    "H3_dim": 3,
+    "decoder_input_dim": 265,
+    "leg_k2_input_dim": 1,
+    "decoder": "LateFusionHead 265 \u2192 128 LayerNorm GELU Dropout(0.2) \u2192 64 GELU Dropout \u2192 1",
+    "leg_k2": "Linear(1,16) GELU Linear(16,1); last layer zero-init; trains jointly"
+  },
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "scheduler": "ReduceLROnPlateau",
+  "scheduler_mode": "max",
+  "scheduler_factor": 0.5,
+  "scheduler_patience": 3,
+  "scheduler_threshold": 0.0001,
+  "min_lr": 6.25e-05,
+  "max_epochs": 60,
+  "min_epochs": 15,
+  "early_stopping_patience": 8,
+  "early_stopping_min_delta": 0.0001,
+  "batch_size": 4096,
+  "dropout_hgt": 0.1,
+  "dropout_decoder": 0.2,
+  "gradient_clipping": "NONE",
+  "amp_precision": "fp32 (no AMP)",
+  "loss": "BCEWithLogitsLoss pos_weight=n_neg/n_pos",
+  "negative_sampling": "frozen prepared pair tables (train_per_positive=4, val 20)",
+  "checkpoint_selection_metric": "sampled validation NDCG@20",
+  "historical_C0": {
+    "max_epochs": 15,
+    "patience": 4,
+    "scheduler": "NONE"
+  },
+  "c1_empirical_from_race": {
+    "mean_C1_NDCG20": 0.8730188384968578,
+    "per_seed": [
+      {
+        "seed": 101,
+        "C0_NDCG20": 0.8651369370892252,
+        "C1_NDCG20": 0.8733283501882275,
+        "C1_minus_C0": 0.0081914130990022,
+        "C0_best_epoch": 2,
+        "C1_best_epoch": 40,
+        "C0_final_epoch": 6,
+        "C1_final_epoch": 48,
+        "C1_final_lr": 0.00025
+      },
+      {
+        "seed": 202,
+        "C0_NDCG20": 0.8680180180851746,
+        "C1_NDCG20": 0.8726885344746306,
+        "C1_minus_C0": 0.0046705163894559,
+        "C0_best_epoch": 14,
+        "C1_best_epoch": 36,
+        "C0_final_epoch": 14,
+        "C1_final_epoch": 44,
+        "C1_final_lr": 0.00025
+      },
+      {
+        "seed": 303,
+        "C0_NDCG20": 0.8668002442631756,
+        "C1_NDCG20": 0.8730396308277154,
+        "C1_minus_C0": 0.0062393865645398,
+        "C0_best_epoch": 14,
+        "C1_best_epoch": 36,
+        "C0_final_epoch": 14,
+        "C1_final_epoch": 44,
+        "C1_final_lr": 0.00025
+      }
+    ]
+  },
+  "config_hash": "d5d78942aba3216f"
+}

@@ -33,6 +33,8 @@ from torch import Tensor, nn
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from scripts._lastfm_paths_20260824 import PROTOCOL_CONFIG, materialized_root  # noqa: E402
+
 from scripts.hgt_aggregation_common import empty_cache  # noqa: E402
 from scripts.run_artist_a11_residual_branch_v1 import (  # noqa: E402
     b0_logits,
@@ -68,8 +70,8 @@ from src.lastfm_lp.pipeline.features_hcr_v2 import ensure_cross_fit  # noqa: E40
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-CFG = ROOT / "configs" / "lastfm_star_race_clean_3.yaml"
-RACE = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
+CFG = PROTOCOL_CONFIG
+RACE = materialized_root()
 ROLE = RACE / "HGT_NODE_SEMANTIC_ROLE_FEATURES_V1"
 B0_H = RACE / "race" / "a11_top25" / "features"
 B0_CKPT = RACE / "race" / "a11_top25" / "checkpoints" / "RACE_CLEAN_3_a11_top25"
@@ -532,7 +534,7 @@ Downstream H3 = `[mean, max, top3mean]` of that Top25.
 ## Source arrays
 
 - splits: `outputs/lastfm_star/splits/{{model_train,valid,test}}.txt`
-- H3 features: `KRAM_FINAL_WORK/RACE_CLEAN_3/race/a11_top25/features/X_{{train,val}}.npy`
+- H3 features: `outputs/lastfm_star/materialized/race/a11_top25/features/X_{{train,val}}.npy`
 - cross-fit cache: `outputs/lastfm_star/features/cross_fit_cache/`
 
 ## Hashes

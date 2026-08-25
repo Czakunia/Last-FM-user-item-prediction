@@ -1,0 +1,218 @@
+protocol: LASTFM_STAR_PROXY_20260824
+frozen_date: '2026-08-24'
+branch: lastfm-proxy
+note: Self-contained publication config for the frozen Last-FM* proxy. Leakage-corrected
+  IntentAwareRS split. Val from train only (seed 2026). TEST sealed. Do not retune.
+data:
+  source: LastFM_star_IntentAwareRS
+  path: data/LastFM_star_IntentAwareRS
+  original_test_preserved: true
+  timestamps_available: false
+  max_users: null
+split:
+  validation_from_train: true
+  split_unit: per_user
+  validation_ratio: 0.1
+  min_train_items: 5
+  seed: 2026
+negatives:
+  train_per_positive: 4
+  validation_per_positive: 20
+  test_per_positive: 20
+  types:
+  - random
+  - popularity_matched
+  - kg_hard
+  active_type: random
+evaluation:
+  n_eval_users: null
+  max_test_positives_per_user: 10
+  max_val_positives_per_user: 10
+  primary_metric: NDCG@20
+  secondary_metrics:
+  - Recall@20
+  - MRR
+  - AUPRC
+  - ROC_AUC
+  ranking_k:
+  - 5
+  - 10
+  - 20
+  seed: 2026
+  note: 'First full run freezes n_eval_users=500 with official test preserved and
+    validation_from_train. Scale-up is a later compute wave.
+
+    '
+  sampled_validation: true
+  sampled_test: true
+  full_ranking_test: true
+  candidate_chunk_size: 2048
+  exclude_train_items: true
+hcr:
+  definition: ORTHONORMAL_A11
+  formula: a11 = (p11 - pj*pi) / sqrt(pj*(1-pj)*pi*(1-pi))
+  smoothing: 0.5
+  top_k_values:
+  - 3
+  - 5
+  protocol: LASTFM_ORTHONORMAL_HCR_V2
+  cross_fitting:
+    enabled: true
+    n_user_folds: 5
+    seed: 2026
+features:
+  tabular_base:
+  - log1p_history_length
+  - log1p_candidate_popularity
+  - log1p_candidate_kg_degree
+  - history_candidate_jaccard
+  - history_candidate_cosine
+  binary_dependence:
+  - hcr_history_mean
+  - hcr_history_max
+  - hcr_history_top3_mean
+  - hcr_history_top5_mean
+  - hcr_history_weighted_mean
+  - hcr_positive_fraction
+  - hcr_support_sum
+  - conditional_probability_max
+  - lift_max
+  - odds_ratio_max
+  - npmi_mean
+models:
+  seed: 101
+  mlp:
+    hidden_dims:
+    - 64
+    - 32
+    dropout: 0.1
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 40
+    batch_size: 4096
+    patience: 5
+  kan:
+    hidden_dim: 32
+    grid_size: 5
+    spline_order: 3
+    dropout: 0.1
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 40
+    batch_size: 4096
+    patience: 5
+  logistic:
+    max_iter: 200
+    C: 1.0
+  graphsage:
+    embed_dim: 64
+    hidden_dim: 64
+    n_layers: 2
+    dropout: 0.1
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 30
+    batch_size: 4096
+    patience: 6
+    max_kg_edges: null
+    early_stop_metric: NDCG@20
+  stage_e:
+    embed_dim: 64
+    n_layers: 2
+    dropout: 0.1
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 20
+    patience: 5
+    num_bases: 8
+    heads: 2
+    max_kg_edges: 250000
+    rgcn_max_kg_edges: null
+    hgt_embed_dim: 32
+    early_stop_metric: NDCG@20
+  stage_f:
+    max_history: 25
+    max_kg_edges: 250000
+    hgt_embed_dim: 32
+    n_layers: 2
+    heads: 2
+    dropout: 0.1
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 20
+    patience: 5
+    early_stop_metric: NDCG@20
+  device: auto
+  architecture:
+    encoder: hgt
+    device: auto
+    embedding_dim: 64
+    num_layers: 2
+    dropout: 0.1
+    heads: 2
+    max_kg_edges: 250000
+    lr: 0.001
+    weight_decay: 0.0001
+    max_epochs: 15
+    patience: 4
+    batch_size: 4096
+paths:
+  outputs_root: outputs/lastfm_star
+  audit: outputs/lastfm_star/audit
+  manifest: outputs/lastfm_star/manifest_race_clean_3.json
+  splits: outputs/lastfm_star/splits
+  features: outputs/lastfm_star/features
+  stage_a: outputs/lastfm/stage_a
+  stage_b: outputs/lastfm/stage_b
+  stage_c: outputs/lastfm/stage_c
+  stage_d: outputs/lastfm/stage_d
+  stage_e: outputs/lastfm/stage_e
+  stage_f: outputs/lastfm/stage_f
+  stage_full: outputs/lastfm_star/stage_full
+  hcr_h2_cache: outputs/lastfm_star/features/stage_h/H2_a11_energy
+  hcr_a11_cache: outputs/lastfm_star/features/stage_h/H1_a11
+  hcr_legacy_cache: outputs/lastfm_star/features/stage_h/H0_legacy_scalar
+stages:
+  first_full_run:
+  - A0
+  - A1
+  - A2
+  - B1
+  - B2
+  - B3
+  - B4
+  graph_run:
+  - C0
+  - C1
+  - C2
+  - C3
+  - D0
+  - D2
+  - D3
+  - D5
+  stage_e_run:
+  - E0
+  - E1
+  - E2
+  - E3
+  stage_f_run:
+  - F0
+  - F1
+  - F2
+  - F3
+  - F4
+experiment:
+  track: LASTFM_STAR_PROXY_20260824
+  note: Self-contained publication config for the frozen Last-FM* proxy. Leakage-corrected
+    IntentAwareRS split. Val from train only (seed 2026). TEST sealed. Do not retune.
+hcr_materialization:
+  engine: fast_v2
+  train_engine: fast_v1
+  chunk_size: 100000
+  memmap: true
+  resume: true
+fusion:
+  type: late_concat
+  activation: gelu
+  hidden_dim: 128
+  dropout: 0.2

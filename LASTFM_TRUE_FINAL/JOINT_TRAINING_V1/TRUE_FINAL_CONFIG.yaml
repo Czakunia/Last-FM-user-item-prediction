@@ -1,0 +1,45 @@
+# TRUE_FINAL_CONFIG
+# Frozen architecture + C1 optimizer, TRUE FINAL joint-gradient semantics.
+# max_epochs=120 is a SAFETY CEILING, not a target.
+
+architecture:
+  hgt_hidden: 64
+  hgt_layers: 2
+  hgt_heads: 2
+  hgt_dropout: 0.1
+  pair_dim: 256
+  graph_dot_dim: 1
+  A5_dim: 5
+  H3_dim: 3
+  decoder_input_dim: 265
+  decoder: "265 -> 128 LN GELU Drop0.2 -> 64 GELU Drop -> 1"
+  leg_k2: "Linear(1,16) GELU Linear(16,1) last-layer zero-init"
+  logit: "base + LEG_K2_residual"
+
+data:
+  dataset: CORRECTED_LASTFM_STAR_NO_LEAKAGE
+  train_negatives: 4
+  val_negatives_sampled: 20
+  test: LOCKED_NOT_RUN
+
+training:
+  optimizer: Adam
+  lr: 0.001
+  weight_decay: 0.0001
+  scheduler: ReduceLROnPlateau
+  scheduler_mode: max
+  scheduler_factor: 0.5
+  scheduler_patience: 3
+  scheduler_threshold: 0.0001
+  min_lr: 0.0000625
+  max_epochs: 120
+  min_epochs: 15
+  early_stop_patience: 8
+  min_delta: 0.0001
+  batch_size: 4096
+  loss: BCEWithLogits
+  amp: false
+  grad_clip: false
+  checkpoint_metric: sampled_val_NDCG@20
+  hgt_grad_scope: ALL_TRAIN
+  seeds: [101, 202, 303]

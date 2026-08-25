@@ -29,6 +29,12 @@ from sklearn.preprocessing import StandardScaler
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from scripts._lastfm_paths_20260824 import (  # noqa: E402
+    PROTOCOL_CONFIG,
+    leg_k2_dir,
+    materialized_root,
+)
+
 from scripts.hgt_aggregation_common import empty_cache  # noqa: E402
 from scripts.lastfm_hgt_a5_ranker_common import (  # noqa: E402
     ARCH_NAME as ARCH_NAME_A5,
@@ -75,8 +81,8 @@ from src.lastfm_lp.data.build_ckg_graph import load_data_and_typed_graph  # noqa
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-CFG = ROOT / "configs" / "lastfm_star_race_clean_3.yaml"
-RACE = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
+CFG = PROTOCOL_CONFIG
+RACE = materialized_root()
 B0_H = RACE / "race" / "a11_top25" / "features"
 LAYER = os.environ.get("LASTFM_LAYER", "a5").strip().lower()
 if LAYER not in {"a5", "hgt", "h3"}:

@@ -25,6 +25,12 @@ from torch import nn
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from scripts._lastfm_paths_20260824 import (  # noqa: E402
+    PROTOCOL_CONFIG,
+    leg_k2_dir,
+    materialized_root,
+)
+
 from scripts.run_publication_our_hgt_fullrank import build_fusion_head  # noqa: E402
 from scripts.run_race_clean_3 import activity_bucket, shared_A_dir  # noqa: E402
 from src.lastfm_lp.config import load_protocol_config  # noqa: E402
@@ -37,9 +43,9 @@ from src.lastfm_lp.models.fusion import RecommendationModel  # noqa: E402
 from src.lastfm_lp.pipeline.prepare import load_prepared  # noqa: E402
 from src.lastfm_lp.torch_device import resolve_torch_device  # noqa: E402
 
-CFG = ROOT / "configs" / "lastfm_star_race_clean_3.yaml"
+CFG = PROTOCOL_CONFIG
 SPLITS = ROOT / "outputs" / "lastfm_star" / "splits"
-RACE = ROOT / "KRAM_FINAL_WORK" / "RACE_CLEAN_3"
+RACE = materialized_root()
 B0_CKPT = RACE / "race" / "a11_top25" / "checkpoints" / "RACE_CLEAN_3_a11_top25"
 B0_H = RACE / "race" / "a11_top25" / "features"
 H_ART = RACE / "ARTIST_A11_LEVEL_V1" / "cache" / "H_artist"

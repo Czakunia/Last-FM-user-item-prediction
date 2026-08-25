@@ -14,45 +14,18 @@ data/KGAT_LastFM/
 data/KGAT_AmazonBook/
 data/KGAT_Yelp2018/
 
-# --- KRAM: local materialization cache only (not in git) ---
+# --- Legacy exploratory cache (features moved to outputs/lastfm_star/materialized/) ---
 KRAM_FINAL_WORK/
 
-# --- Legacy configs / docs ---
-configs/config.yaml
-configs/contracts/
-configs/data_schema.yaml
-configs/lastfm_architecture_hcr_v1.yaml
-configs/lastfm_full_sota*.yaml
-configs/lastfm_lp_v1.yaml
-configs/lastfm_orthonormal_hcr_v2.yaml
-configs/lastfm_path_h2_v1.yaml
-
-# --- Scripts: only numbered entry + internal deps (see INTERNAL_LASTFM_SCRIPTS_20260824.txt) ---
-scripts/*
-!scripts/LAST_FM_*_20260824.py
-!scripts/_lastfm_pipeline_common_20260824.py
-!scripts/run_race_clean_3.py
-!scripts/run_final_hgt_capacity_convergence_race_v1.py
-!scripts/run_hgt_artist_edge_ablation_v1.py
-!scripts/hgt_aggregation_common.py
-!scripts/lastfm_hgt_a5_ranker_common.py
-!scripts/run_lastfm_true_final_joint_training_v1.py
-!scripts/run_lastfm_joint_hgt_a5_ranker_v1.py
-!scripts/run_lastfm_noleak_fullrank_validation_v1.py
-!scripts/run_lastfm_noleak_fullrank_fast_v1.py
-!scripts/run_a11_distributional_representation_series_v1.py
-!scripts/run_a11_functional_distribution_benchmark_v2.py
-!scripts/run_artist_a11_residual_branch_v1.py
-!scripts/PIPELINE_LAST_FM_20260824.txt
-!scripts/INTERNAL_LASTFM_SCRIPTS_20260824.txt
-!scripts/cleanup_legacy_local.sh
-
-# --- Old output trees ---
+# --- Materialized statistical features (regenerate: LAST_FM_01) ---
+outputs/lastfm_star/materialized/
+outputs/lastfm_star/features/
+outputs/lastfm_star/stage_full/
 outputs/lastfm/
 outputs/lastfm_full/
 outputs/lastfm_race_v1/
-outputs/lastfm_star/features/
-outputs/lastfm_star/stage_full/
+outputs/figures/
+outputs/reports/
 
 # --- Model weights and training caches ---
 LASTFM_TRUE_FINAL/**/*.pt
@@ -72,21 +45,32 @@ LASTFM_TRUE_FINAL/thesis/
 LASTFM_TRUE_FINAL/NOLEAK_FULLRANK_VALIDATION_V1_FAST/
 LASTFM_TRUE_FINAL/C1_REPRODUCTION_CONTROL/
 LASTFM_TRUE_FINAL/ABLATION_TRAIN_THEN_FULLRANK/
-
-# --- Legacy tests ---
-tests/test_native_measure_screen.py
-tests/test_h2_*.py
-tests/test_h3_*.py
-tests/test_orthonormal_hcr*.py
+LASTFM_TRUE_FINAL/**/TEST_LOCKED
+LASTFM_TRUE_FINAL/**/PARTIAL_*.json
+LASTFM_TRUE_FINAL/**/*.bak*
+LASTFM_TRUE_FINAL/**/EQ_EXPAND_VS_FULL.json
+LASTFM_TRUE_FINAL/**/TRUE_FINAL_ARCHITECTURE_AUDIT.md
+LASTFM_TRUE_FINAL/**/TRUE_JOINT_GRADIENT_AUDIT.md
+LASTFM_TRUE_FINAL/**/C1_REPRODUCTION_PRESERVED
 
 # --- Misc ---
 notebooks/
 docker/
 external/
+external_repos/
+
+# --- External Last-FM* benchmark artifacts ---
+# Keep sealed JSON results + audit; ignore bulky weights / caches / features
+LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/
+LASTFM_EXTERNAL_BENCHMARK_20260824/features/
+LASTFM_EXTERNAL_BENCHMARK_20260824/models/
+LASTFM_EXTERNAL_BENCHMARK_20260824/splits/
+LASTFM_EXTERNAL_CONVERGENCE_REFIT_20260824/
 *.pdf
-docs/kg_hcr.md
-docs/logic_task_a_card.md
-docs/protocol_*.md
-docs/task_a_logic.md
-docs/transferability.md
-docs/README.md
+
+# Allow sealed result JSON + small audit under the external benchmark tree
+!LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/
+!LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/**
+!LASTFM_EXTERNAL_BENCHMARK_20260824/audit/
+!LASTFM_EXTERNAL_BENCHMARK_20260824/audit/**
+LASTFM_EXTERNAL_BENCHMARK_20260824/audit/*.pkl

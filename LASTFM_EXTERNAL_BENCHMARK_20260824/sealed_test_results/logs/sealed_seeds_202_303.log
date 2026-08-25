@@ -1,0 +1,52 @@
+Failed to create PreventUserIdleSystemSleep assertion
+[sealed] UNSEALING TEST_EXTERNAL for one-shot evaluation
+[sealed] reuse TopPop A: NDCG@20=0.0091 | B: NDCG@20=0.0091
+[sealed] reuse ItemKNN A: NDCG@20=0.2051 | B: NDCG@20=0.2051
+[sealed] reuse P3alpha A: NDCG@20=0.2035 | B: NDCG@20=0.2035
+[sealed] reuse RP3beta A: NDCG@20=0.2318 | B: NDCG@20=0.2318
+[sealed] reuse UserKNN A: NDCG@20=0.1622 | B: NDCG@20=0.1622
+[sealed] preparing TRUE FINAL scoring context …
+[H] building/loading 5-fold cross-fit HCR indices …
+[cross-fit] loading cached fold coocs from /Users/martajasiewicz/Desktop/KGAT_KnowledgeGraphs/LASTFM_EXTERNAL_BENCHMARK_20260824/features/cross_fit_cache
+[cross-fit] fold 0: n_users=18823 cooc_nnz=22485950 (cache)
+[cross-fit] fold 1: n_users=18823 cooc_nnz=22587896 (cache)
+[cross-fit] fold 2: n_users=18823 cooc_nnz=22363402 (cache)
+[cross-fit] fold 3: n_users=18823 cooc_nnz=22487994 (cache)
+[cross-fit] fold 4: n_users=18824 cooc_nnz=22463470 (cache)
+[sealed] reuse TRUE FINAL seed=101 A NDCG@20=0.1685 | B NDCG@20=0.1685
+[sealed] TRUE FINAL seed=202 epochs=34 …
+EvaluatorHoldout: Processed 1000 ( 4.3%) in 7.36 min. Users per second: 2
+EvaluatorHoldout: Processed 2000 ( 8.5%) in 12.99 min. Users per second: 3
+EvaluatorHoldout: Processed 3000 (12.8%) in 18.05 min. Users per second: 3
+EvaluatorHoldout: Processed 5000 (21.3%) in 27.05 min. Users per second: 3
+EvaluatorHoldout: Processed 7000 (29.8%) in 35.83 min. Users per second: 3
+EvaluatorHoldout: Processed 9000 (38.3%) in 43.58 min. Users per second: 3
+EvaluatorHoldout: Processed 11000 (46.8%) in 50.69 min. Users per second: 4
+EvaluatorHoldout: Processed 13000 (55.3%) in 57.00 min. Users per second: 4
+EvaluatorHoldout: Processed 15000 (63.8%) in 1.05 hour. Users per second: 4
+EvaluatorHoldout: Processed 17000 (72.3%) in 1.14 hour. Users per second: 4
+EvaluatorHoldout: Processed 19000 (80.8%) in 1.23 hour. Users per second: 4
+EvaluatorHoldout: Processed 22000 (93.5%) in 1.35 hour. Users per second: 5
+EvaluatorHoldout: Processed 23529 (100.0%) in 1.40 hour. Users per second: 5
+[sealed] seed=202 A NDCG@20=0.1762 Recall@20=0.2167 | B NDCG@20=0.1762 (5065.2s)
+[sealed] TRUE FINAL seed=303 epochs=43 …
+EvaluatorHoldout: Processed 1000 ( 4.3%) in 6.96 min. Users per second: 2
+EvaluatorHoldout: Processed 2000 ( 8.5%) in 12.51 min. Users per second: 3
+EvaluatorHoldout: Processed 3000 (12.8%) in 17.58 min. Users per second: 3
+EvaluatorHoldout: Processed 5000 (21.3%) in 26.68 min. Users per second: 3
+EvaluatorHoldout: Processed 7000 (29.8%) in 35.45 min. Users per second: 3
+EvaluatorHoldout: Processed 9000 (38.3%) in 42.63 min. Users per second: 4
+EvaluatorHoldout: Processed 11000 (46.8%) in 49.30 min. Users per second: 4
+EvaluatorHoldout: Processed 13000 (55.3%) in 55.40 min. Users per second: 4
+EvaluatorHoldout: Processed 15000 (63.8%) in 1.02 hour. Users per second: 4
+EvaluatorHoldout: Processed 17000 (72.3%) in 1.12 hour. Users per second: 4
+EvaluatorHoldout: Processed 19000 (80.8%) in 1.22 hour. Users per second: 4
+EvaluatorHoldout: Processed 21000 (89.3%) in 1.31 hour. Users per second: 4
+EvaluatorHoldout: Processed 23529 (100.0%) in 1.40 hour. Users per second: 5
+[sealed] seed=303 A NDCG@20=0.1706 Recall@20=0.2127 | B NDCG@20=0.1706 (5056.7s)
+LASTFM_EXT_04 = OK
+SEALED_TEST_EXECUTED=True
+results_sha256=ff25f0013b028ff077ab8a0a028d7107a3a1c0828edcb017b7ec1a6fcddfbf63
+BlockA TRUE_FINAL mean NDCG@20=0.171778 Recall@20=0.213878
+BlockB TRUE_FINAL mean NDCG@20=0.171778 Recall@20=0.213878 MRR=0.240868 HitRate@20=0.582954
+STOP after sealed-test report (no commit, no push).

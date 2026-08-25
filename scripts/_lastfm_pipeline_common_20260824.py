@@ -53,7 +53,7 @@ def run_module_prepare() -> None:
     code = """
 from src.lastfm_lp.config import load_protocol_config
 from src.lastfm_lp.pipeline.prepare import prepare_all
-prepare_all(load_protocol_config("configs/lastfm_star_race_clean_3.yaml"), verify=False)
+prepare_all(load_protocol_config("configs/lastfm_star_proxy_20260824.yaml"), verify=False)
 """
     env = base_env()
     print("[pipeline] prepare anti-leakage splits + pair tables", flush=True)

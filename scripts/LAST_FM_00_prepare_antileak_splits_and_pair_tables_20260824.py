@@ -8,7 +8,7 @@ Reads official Last-FM* under data/LastFM_star_IntentAwareRS/ (IntentAwareRS
 and pair tables under outputs/lastfm_star/.
 
 Prerequisite: raw Last-FM* files in data/LastFM_star_IntentAwareRS/
-Config: configs/lastfm_star_race_clean_3.yaml
+Config: configs/lastfm_star_proxy_20260824.yaml
 TEST is preserved but never scored during development.
 """
 
