@@ -1,13 +1,13 @@
-# Last-FM* proxy — frozen pipeline (2026-08-24)
+# LastFM* proxy - frozen pipeline (2026-08-24)
 
 **Branch:** `lastfm-proxy`  
 Cross-domain proxy on **Last-FM\*** (IntentAwareRS leakage-corrected split): heterogeneous graph encoder **+** explicit candidate-specific statistical context.
 
-This repository is **not** Task A (synthetic pharmacotherapy).
+
 
 ---
 
-## Headline results (read before citing numbers)
+
 
 | Protocol | NDCG@20 | Recall@20 | Use |
 |---|---:|---:|---|
@@ -91,7 +91,7 @@ Never put development full-catalog and sealed numbers in the same comparison col
 - Sealed JSON results: `LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/` (committed)
 - Model weights / large caches: **gitignored** (regenerate via scripts)
 
-Do **not** redistribute raw KGAT dumps. `data/external/` stays ignored.
+
 
 ---
 
