@@ -8,16 +8,13 @@ __pycache__/
 .ipynb_checkpoints/
 logs/
 
-# --- Do not redistribute raw KGAT dumps ---
+# Do not redistribute raw KGAT dumps
 data/external/
 data/KGAT_LastFM/
 data/KGAT_AmazonBook/
 data/KGAT_Yelp2018/
 
-# --- Legacy exploratory cache (features moved to outputs/lastfm_star/materialized/) ---
-KRAM_FINAL_WORK/
-
-# --- Materialized statistical features (regenerate: LAST_FM_01) ---
+# Materialized features / caches (regenerate via pipeline)
 outputs/lastfm_star/materialized/
 outputs/lastfm_star/features/
 outputs/lastfm_star/stage_full/
@@ -26,8 +23,12 @@ outputs/lastfm_full/
 outputs/lastfm_race_v1/
 outputs/figures/
 outputs/reports/
+artifacts/
+*.npy
+*.pkl
+*.pt
 
-# --- Model weights and training caches ---
+# Training caches under TRUE_FINAL trees
 LASTFM_TRUE_FINAL/**/*.pt
 LASTFM_TRUE_FINAL/**/*.pkl
 LASTFM_TRUE_FINAL/**/*.npz
@@ -36,41 +37,3 @@ LASTFM_TRUE_FINAL/**/*.log
 LASTFM_TRUE_FINAL/**/run/
 LASTFM_TRUE_FINAL/**/06_CHECKPOINTS/
 LASTFM_TRUE_FINAL/**/00_AUDIT/
-LASTFM_TRUE_FINAL/**/FROM_SCRATCH_AUDIT.json
-LASTFM_TRUE_FINAL/**/PROGRESS.txt
-LASTFM_TRUE_FINAL/**/train_meta.json
-LASTFM_TRUE_FINAL/RECOVERY.md
-LASTFM_TRUE_FINAL/THESIS_INSERT_DRAFT.md
-LASTFM_TRUE_FINAL/thesis/
-LASTFM_TRUE_FINAL/NOLEAK_FULLRANK_VALIDATION_V1_FAST/
-LASTFM_TRUE_FINAL/C1_REPRODUCTION_CONTROL/
-LASTFM_TRUE_FINAL/ABLATION_TRAIN_THEN_FULLRANK/
-LASTFM_TRUE_FINAL/**/TEST_LOCKED
-LASTFM_TRUE_FINAL/**/PARTIAL_*.json
-LASTFM_TRUE_FINAL/**/*.bak*
-LASTFM_TRUE_FINAL/**/EQ_EXPAND_VS_FULL.json
-LASTFM_TRUE_FINAL/**/TRUE_FINAL_ARCHITECTURE_AUDIT.md
-LASTFM_TRUE_FINAL/**/TRUE_JOINT_GRADIENT_AUDIT.md
-LASTFM_TRUE_FINAL/**/C1_REPRODUCTION_PRESERVED
-
-# --- Misc ---
-notebooks/
-docker/
-external/
-external_repos/
-
-# --- External Last-FM* benchmark artifacts ---
-# Keep sealed JSON results + audit; ignore bulky weights / caches / features
-LASTFM_EXTERNAL_BENCHMARK_20260824/baselines/
-LASTFM_EXTERNAL_BENCHMARK_20260824/features/
-LASTFM_EXTERNAL_BENCHMARK_20260824/models/
-LASTFM_EXTERNAL_BENCHMARK_20260824/splits/
-LASTFM_EXTERNAL_CONVERGENCE_REFIT_20260824/
-*.pdf
-
-# Allow sealed result JSON + small audit under the external benchmark tree
-!LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/
-!LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/**
-!LASTFM_EXTERNAL_BENCHMARK_20260824/audit/
-!LASTFM_EXTERNAL_BENCHMARK_20260824/audit/**
-LASTFM_EXTERNAL_BENCHMARK_20260824/audit/*.pkl

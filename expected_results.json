@@ -1,0 +1,22 @@
+{
+  "model": "HGT + A5 + H3 + LEG (hard-negative R3, from scratch)",
+  "official_tables": true,
+  "architecture": "HGT d=64 L=2 heads=2 + pair readout 257-D + A5 5-D + H3 3-D, fusion MLP 265→128→64→1, L2 residual on the logit",
+  "seeds": [101, 202, 303, 404, 505],
+  "development_full_catalogue_NDCG@20": {
+    "random_negative": 0.2764,
+    "hard_negative_5seed": 0.2819
+  },
+  "sealed_extra_NDCG@20": {
+    "random_negative_3seed": 0.1718,
+    "hard_negative_5seed": 0.2015,
+    "per_seed_hard_negative": {
+      "101": 0.202174,
+      "202": 0.202932,
+      "303": 0.197613,
+      "404": 0.201272,
+      "505": 0.203313
+    }
+  },
+  "note": "Do not mix sampled validation NDCG@20 (~0.87) with full-catalogue development or sealed extra."
+}

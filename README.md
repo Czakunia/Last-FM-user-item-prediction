@@ -1,109 +1,101 @@
-# LastFM* proxy - frozen pipeline (2026-08-24)
+# Last-FM* — HGT + A5 + H3 + LEG (final joint model)
 
-**Branch:** `lastfm-proxy`  
-Cross-domain proxy on **Last-FM\*** (IntentAwareRS leakage-corrected split): heterogeneous graph encoder **+** explicit candidate-specific statistical context.
+Reproduction package for the **official** Last-FM* ranker of the thesis:
+Heterogeneous Graph Transformer plus candidate-specific statistics
+(A5, H3, second-order Legendre residual \(L_2\)), trained with hard
+negatives (R3).
 
+This is **not** the parameter-free \(\phi\) ranker (second GitHub package).
+It is **not** the unofficial SVD-fed / stats-only diagnostics.
 
+## Official numbers (do not mix protocols)
 
----
+| Protocol | NDCG@20 |
+|---|---:|
+| Development full-catalogue, random negatives, 3 seeds | 0.2764 |
+| Development full-catalogue, hard negatives, 5 seeds | **0.2819** |
+| Sealed extra, random negatives, 3 seeds | 0.1718 |
+| Sealed extra, hard negatives, 5 seeds (101/202/303/404/505) | **0.2015** |
 
+Sampled validation NDCG@20 (~0.87) is only a checkpoint proxy. Never compare
+it to full-catalogue or extra.
 
+Per-seed extra: see `expected_results.json`.
 
-| Protocol | NDCG@20 | Recall@20 | Use |
-|---|---:|---:|---|
-| Full-catalog **development** (frozen checkpoints) | **0.2764 ± 0.0041** | 0.3768 | Ablation / architecture |
-| **Sealed external** test (IntentAwareRS holdout) | **0.1718 ± 0.0040** | 0.2139 ± 0.0024 | Literature comparison |
-| Strongest classical sealed baseline (RP3β) | **0.2318** | 0.2588 | External reference |
+## Data shipped in this repo
 
-Full discussion of why **~0.27** and **~0.17** differ (and why both are correct):  
-→ [`reports/LASTFM_RESULTS_DISCUSSION_20260824.md`](reports/LASTFM_RESULTS_DISCUSSION_20260824.md)
+| Path | What it is |
+|---|---|
+| `data/LastFM_star_IntentAwareRS/` | Leakage-corrected Last-FM* from IntentAwareRS (`--resolveDataLeakage yes`). Train/test/KG lists. |
+| `outputs/lastfm_star/splits/` | Frozen model-train / valid / test used in the thesis (valid carved from train, seed **2026**). |
 
-Protocol freeze + hashes:  
-→ [`reports/LASTFM_FINAL_EXTERNAL_PROTOCOL_MANIFEST_20260824.md`](reports/LASTFM_FINAL_EXTERNAL_PROTOCOL_MANIFEST_20260824.md)
+SHA-256 fingerprints: `SHA256_DATA.json`.
 
----
+Source of Last-FM*:
+[IntentAwareRS](https://github.com/Faisalse/IntentAwareRS)
+(Shehzad, Ferrari Dacrema, Jannach, SIGIR 2025, DOI:10.1145/3726302.3730307).
+Do **not** use the original leaking KGAT Last-FM dump.
 
-## Run in order
+## Numbered pipeline
 
-### Development (00 → 04)
+Run from the package root after `python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`.
 
-| Step | Script | What it does |
+| Step | Script | Does |
 |---:|---|---|
-| **0** | `scripts/LAST_FM_00_prepare_antileak_splits_and_pair_tables_20260824.py` | Build `model_train` / valid / pair tables |
-| **1** | `scripts/LAST_FM_01_materialize_A5_and_H3_statistical_features_20260824.py` | Precompute A5 + H3 under `outputs/lastfm_star/materialized/` |
-| **2** | `scripts/LAST_FM_02_train_true_final_joint_model_HGT_A5_H3_LEG_20260824.py` | Train full model (HGT+A5+H3+LEG), seeds 101/202/303 |
-| **3** | `scripts/LAST_FM_03_train_ablation_layers_sampled_val_NDCG_20260824.py` | Ablations: HGT / +A5 / +H3 |
-| **4** | `scripts/LAST_FM_04_fullrank_validation_frozen_checkpoints_20260824.py` | Full-catalog development evaluation |
+| 1 | `pipeline/01_prepare_lastfm_star_antileak_splits_and_pair_tables.py` | Rebuild splits (must match shipped hashes). TEST not scored. |
+| 2 | `pipeline/02_materialize_A5_H3_and_LEG_statistical_features_on_model_train.py` | Cross-fitted A5 / H3 / \(L_2\) on model-train pairs. |
+| 3 | `pipeline/03_build_item_A11_neighbourhoods_and_hard_negative_R3_pairs.py` | R3 hard-negatives (2× φ-band + pop + random) and SCREEN_3K. |
+| 4 | `pipeline/04_train_HGT_A5_H3_LEG_from_scratch_official_seeds.py` | Train 20 epochs, seeds 101–505. HGT never sees A5/H3. |
+| 5 | `pipeline/05_select_checkpoint_on_development_full_catalogue.py` | Freeze `selected_epoch` on DEV full-catalogue NDCG@20. |
+| 6 | `pipeline/06_refit_on_train_external_and_evaluate_sealed_holdout.py` | `TRAIN_EXTERNAL = model_train ∪ valid`, then sealed extra. |
 
-### Sealed external (EXT_00 → EXT_05)
-
-| Step | Script | Role |
-|---:|---|---|
-| EXT_00 | `scripts/LAST_FM_EXT_00_build_final_train_manifest_20260824.py` | Build `TRAIN_EXTERNAL` |
-| EXT_01 | `scripts/LAST_FM_EXT_01_refit_true_final_on_full_train_20260824.py` | Refit frozen epochs on full train |
-| EXT_02 | `scripts/LAST_FM_EXT_02_fit_external_baselines_20260824.py` | Classical baselines |
-| EXT_03 | `scripts/LAST_FM_EXT_03_validate_candidate_and_metric_equivalence_20260824.py` | Equivalence checks |
-| EXT_04 | `scripts/LAST_FM_EXT_04_run_sealed_test_once_20260824.py` | **One-shot** sealed test |
-| EXT_05 | `scripts/LAST_FM_EXT_05_freeze_and_protocol_manifest_20260824.py` | Manifest + freeze |
+Step 6 requires:
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-
-# Development
-.venv/bin/python scripts/LAST_FM_00_prepare_antileak_splits_and_pair_tables_20260824.py
-.venv/bin/python scripts/LAST_FM_01_materialize_A5_and_H3_statistical_features_20260824.py
-.venv/bin/python scripts/LAST_FM_02_train_true_final_joint_model_HGT_A5_H3_LEG_20260824.py
-.venv/bin/python scripts/LAST_FM_03_train_ablation_layers_sampled_val_NDCG_20260824.py
-.venv/bin/python scripts/LAST_FM_04_fullrank_validation_frozen_checkpoints_20260824.py
+export GO_TRUE_FINAL_EXTERNAL=YES
+export CONFIRM_UNSEAL_LASTFM_TEST=YES
 ```
 
-**One GPU/MPS job at a time** on 16 GB machines. Use `.venv/bin/python`.
+Each pipeline file has a long module docstring: inputs, outputs, and the
+exact scientific role of that step.
 
----
+## Architecture (frozen)
 
-## Frozen model
+```
+s(u,X) = MLP_265→128→64→1( [ q_struct (257) ‖ A5 (5) ‖ H3 (3) ] ) + δ_LEG(L2)
+```
 
-`HGT 64/2L/2H + pair256 + graph_dot + A5 + H3 + LEG_K2 residual` → LateFusion **265-D**.
+HGT: 64-D, 2 layers, 2 heads, dropout 0.1. CKG: user–item interactions plus
+at most 250_000 KG edges. Loss: BCE + 0.5 BPR. Adam 1e-3, wd 1e-4.
 
-Authoritative detail: [`docs/LASTFM_PROXY_REPRODUCTION.md`](docs/LASTFM_PROXY_REPRODUCTION.md).
+A5 / H3 / \(L_2\) definitions match the thesis appendix (Last-FM* statistical
+branch). Cross-fitting: user \(u\) is excluded from the co-occurrence tables
+used to score \(u\).
 
----
+## Hardware
 
-## Metrics — do not mix
+Full-catalogue extra scores ~23.5k users × ~48k items. Plan many hours per
+seed on CPU. One training job at a time on 16 GB machines.
 
-| Protocol | Typical NDCG@20 | Use |
-|---|---:|---|
-| Sampled validation (20 negatives) | ~0.87 | training / early stopping only |
-| Full-catalog development | **~0.276** | architecture ablation |
-| Sealed external test | **~0.172** | literature comparison |
+## What is intentionally not in git
 
-Never put development full-catalog and sealed numbers in the same comparison column.
-
----
-
-## Data & config
-
-- Raw Last-FM*: `data/LastFM_star_IntentAwareRS/` (not the leaking KGAT dump)
-- Protocol: `configs/lastfm_star_proxy_20260824.yaml`
-- Splits: `outputs/lastfm_star/splits/` (val 10% from train, seed 2026)
-- Materialized features: `outputs/lastfm_star/materialized/` (local `.npy`, gitignored)
-- Sealed JSON results: `LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/` (committed)
-- Model weights / large caches: **gitignored** (regenerate via scripts)
+Checkpoints (`*.pt`), materialised `.npy` features, and training logs.
+Regenerate with steps 2–4. The sealed **labels** *are* included (Last-FM*
+`test.txt`) so extra is reproducible; do not use them before step 6.
 
 
+## Changelog (this repository)
 
----
-
-## Layout
-
-| Path | Role |
+| Date | What |
 |---|---|
-| `scripts/LAST_FM_*_20260824.py` | Development entry points |
-| `scripts/LAST_FM_EXT_*_20260824.py` | Sealed external entry points |
-| `scripts/_lastfm_pipeline_common_20260824.py` | Shared helpers |
-| `src/lastfm_lp/` | Reusable library |
-| `LASTFM_TRUE_FINAL/` | Training + full-catalog reports (weights ignored) |
-| `reports/` | Manifest + results discussion |
-| `docs/LASTFM_PROXY_REPRODUCTION.md` | Reproduction document |
-| `tests/test_lastfm_external_protocol_20260824.py` | Protocol tests |
+| 2026-08-24 | First publish: random-negative sealed extra **NDCG@20 = 0.1718** (`scripts/LAST_FM_*_20260824.py`). |
+| 2026-09 | Official thesis update: hard-negative R3 training, 5 seeds, sealed extra **NDCG@20 = 0.2015**. Use numbered `pipeline/01`–`06`. |
+
+Archived random-negative sealed discussion:
+[`reports/LASTFM_RESULTS_DISCUSSION_20260824.md`](reports/LASTFM_RESULTS_DISCUSSION_20260824.md).
+Sealed JSON from that protocol:
+`LASTFM_EXTERNAL_BENCHMARK_20260824/sealed_test_results/`.
+
+The parameter-free φ ranker lives in a **separate** repo:
+[`Czakunia/lastfm-star-softmax-phi-ranker`](https://github.com/Czakunia/lastfm-star-softmax-phi-ranker).
+
